@@ -1,0 +1,71 @@
+<div class="col-md-10 col-md-offset-1">
+    <div class="row">
+        <div class="col-12 col-md-10">
+                <h2>Welcome {{ctrl.userName}}</h2>
+                <p>You're logged in fustany!!</p>
+                <hr>
+        </div>
+        <div class="col-6 col-md-2 ">
+                <p><a  class="btn btn-danger" style="margin-top: 15px;" href="#/login">Logout</a></p> 
+        </div>
+    </div>
+
+    <div class="card card-body bg-light text-center" ng-class="{'visible' : (!ctrl.allRides.length)}" ng-show="ctrl.noRides" >
+        <p> Soory there is no rides avalible now!! </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 table-responsive">
+            <table class="table" ng-class="{'hidden' : (!ctrl.allRides.length)}" ng-show="ctrl.showRides" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name </th>
+                        <th>meeting_point </th>
+                        <th>destination </th>
+                        <th>start_date</th>
+                        <th>end_date</th>
+                        <th>subscribe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="ride in ctrl.allRides">
+                        <td>{{$index+1}}</td>
+                        <td >{{ride.name}}</td>
+                        <td >{{ride.meeting_point}}</td>
+                        <td >{{ride.destination}}</td>
+                        <td >{{ride.start_date}}</td>
+                        <td >{{ride.end_date}}</td>
+                        <td >
+                            <button ng-click="ctrl.subscribe(ride.id)" class="btn btn-primary btn-sm">subscribe</button>
+                        </td>
+                    </tr>
+                </tbody>    
+            </table>
+        </div>
+    </div>
+
+    <form class="form-inline text-center">
+        <div class="form-group mb-2 justify-content-center">
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">filter by </label>
+            <select class="form-control custom-select btn-warning"
+                    ng-model="ctrl.filterType"
+                    ng-change="ctrl.getAllRides()"
+                    ng-options="filterType.type for filterType in ctrl.filterTypes track by filterType.id">
+            </select>
+        </div>
+
+        <nav aria-label="Page navigation example">           
+                <ul class="pagination justify-content-center" style="margin-left: 25px;">
+                    <li class="page-item"><a class="page-link" ng-click="ctrl.getPrevouseRides()"  >Previous</a></li>
+                    <li class="page-item"><a class="page-link" ng-class="{'navButton' : (ctrl.currentPage == 1)}" ng-if="!ctrl.showCurrentPage" ng-click="ctrl.getRidesbyTopPages(1)"  >1</a></li>
+                    <li class="page-item"><a class="page-link" ng-class="{'navButton' : (ctrl.currentPage == 2)}" ng-if="!ctrl.showCurrentPage" ng-click="ctrl.getRidesbyTopPages(2)"  >2</a></li>
+                    <li class="page-item"><a class="page-link" ng-class="{'navButton' : (ctrl.currentPage == 3)}" ng-if="!ctrl.showCurrentPage" ng-click="ctrl.getRidesbyTopPages(3)"  >3</a></li>
+                    <li class="page-item"><a class="page-link" ng-if="ctrl.showCurrentPage"  ng-class="{'navButton' : (ctrl.showCurrentPage)}" ng-click="ctrl.getRidesbyTopPages(ctrl.currentPage)"  >{{ctrl.currentPage}}</a></li>
+                    <li class="page-item"><a class="page-link" ng-click="ctrl.getNextRides()" >Next</a></li>
+                </ul>           
+        </nav>
+    </form>
+     
+</div>
+

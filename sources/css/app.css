@@ -1,0 +1,33 @@
+.help-block {
+    font-size: 12px;
+}
+.jumbotron{
+    height: 100vh;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 3s linear;
+  }
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 2s 3s, opacity 3s linear;
+  }
+
+  .table-responsive {
+    display: table;
+}
+
+.page-item .page-link {
+    padding: 10px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+.navButton {
+    background-color: #d39e00;
+}

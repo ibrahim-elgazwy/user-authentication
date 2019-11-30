@@ -1,0 +1,29 @@
+<div class="col-md-5 offset-md-3">
+    <h2>Login</h2>
+    <form name="form" ng-submit="form.$valid" novalidate>
+        <div class="form-group">
+            <label for="user[email]">Username</label>
+            <span ng-if="ctrl.usernameIsrequired && !ctrl.user.email" style="color: red;"> username is required </span>
+            <input type="text" 
+                   name="user[email]" 
+                   class="form-control" 
+                   ng-model="ctrl.user.email"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <span ng-if="ctrl.passwordIsrequired && !ctrl.user.password" style="color: red;"> password is required </span>
+            <input type="password" 
+                   name="user[password]" 
+                   class="form-control" 
+                   ng-model="ctrl.user.password"/>
+        </div>
+
+        <div class="form-group">
+            <button ng-click="ctrl.login()" 
+                    class="btn btn-primary">Login</button>
+                    <span ng-if="ctrl.userNotExist" class="alert alert-danger">{{ctrl.error}}</span>
+        </div>
+
+        
+    </form>
+</div>
